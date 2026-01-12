@@ -1,0 +1,174 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "programs": "Programs",
+    "gallery": "Gallery",
+    "contact": "Contact",
+    "events": "Events",
+    "blog": "Blog",
+    "trainers": "Team"
+  },
+  "hero": {
+    "title": "OPORTO",
+    "subtitle": "RUNNING LAB",
+    "tagline": "Run better. Run pain-free. Run forever.",
+    "cta": "Join Us",
+    "scroll": "Scroll to discover"
+  },
+  "about": {
+    "title": "The Lab",
+    "description": "OPORTO RUNNING LAB is a running laboratory created for those who want to run better, with more efficiency, less pain and greater consistency - regardless of experience level.",
+    "approach": "Here, running is treated with method. We assess technique, identify limitations and correct movement patterns, combining group classes, technical training and individual training prescription adapted to each person's goals.",
+    "location": "Based in Leca da Palmeira",
+    "mission": "Making running safer, more effective and sustainable for everyone."
+  },
+  "program": {
+    "title": "The Program",
+    "subtitle": "Everything you need to evolve",
+    "items": {
+      "group": {
+        "title": "Group Classes",
+        "description": "Group running classes with constant technical support"
+      },
+      "technique": {
+        "title": "Technical Assessment",
+        "description": "Running technique assessment and correction"
+      },
+      "personalized": {
+        "title": "Personalized Training",
+        "description": "Personalized running training prescription"
+      },
+      "special": {
+        "title": "Special Sessions",
+        "description": "Sessions to deepen technique, strength and control"
+      },
+      "support": {
+        "title": "Support",
+        "description": "Close follow-up in a motivating and accessible environment"
+      }
+    }
+  },
+  "packages": {
+    "title": "Packages",
+    "subtitle": "Choose your path",
+    "note": "* All packages include access to the exclusive community",
+    "starter": {
+      "name": "Starter",
+      "description": "For those taking their first steps",
+      "features": ["2 group classes per week", "Initial technical assessment", "Basic training plan", "Community access"]
+    },
+    "evolution": {
+      "name": "Evolution",
+      "description": "For those who want to evolve consistently",
+      "features": ["3 group classes per week", "Monthly technical assessment", "Personalized training plan", "Strength sessions", "Close follow-up"],
+      "popular": "Most Popular"
+    },
+    "performance": {
+      "name": "Performance",
+      "description": "For those preparing for races",
+      "features": ["Unlimited classes", "Continuous technical assessment", "Advanced training plan", "Strength and mobility sessions", "Premium follow-up", "Nutritional consulting"]
+    },
+    "mentoria": {
+      "name": "Online Mentoring",
+      "description": "For those who are far but want to evolve",
+      "features": ["Weekly video sessions", "Personalized training plan", "Video technique analysis", "App-based follow-up", "Online community access"]
+    },
+    "cta": "Learn More"
+  },
+  "services": {
+    "title": "Complementary Services",
+    "subtitle": "Partnerships to optimize your performance",
+    "physio": {
+      "title": "Physiotherapy & Osteopathy",
+      "description": "Injury prevention and recovery with professionals specialized in running",
+      "partner": "Fisiogo"
+    },
+    "nutrition": {
+      "title": "Sports Nutrition",
+      "description": "Personalized nutritional guidance to maximize your performance and recovery",
+      "partner": "Coming soon"
+    },
+    "psychology": {
+      "title": "Sports Psychology",
+      "description": "Mental preparation to achieve your goals and overcome barriers",
+      "partner": "Coming soon"
+    }
+  },
+  "partners": {
+    "title": "Partners",
+    "subtitle": "Together we go further"
+  },
+  "events": {
+    "title": "Events",
+    "subtitle": "Upcoming events and history",
+    "upcoming": "Upcoming Events",
+    "past": "Past Events",
+    "register": "Register",
+    "noEvents": "New events coming soon",
+    "date": "Date",
+    "location": "Location",
+    "price": "Price",
+    "free": "Free",
+    "spots": "Spots",
+    "spotsLeft": "spots available"
+  },
+  "blog": {
+    "title": "Blog",
+    "subtitle": "Articles and tips about running",
+    "readMore": "Read More",
+    "noPosts": "New articles coming soon",
+    "by": "By",
+    "minRead": "min read",
+    "backToBlog": "Back to Blog"
+  },
+  "trainers": {
+    "title": "Team",
+    "subtitle": "Meet our trainers",
+    "qualifications": "Qualifications",
+    "experience": "Experience",
+    "watchVideo": "Watch Video",
+    "specialties": "Specialties"
+  },
+  "gallery": {
+    "title": "Gallery",
+    "subtitle": "Moments from the Lab",
+    "note": "* Add your photos and videos to the public/images and public/videos folders"
+  },
+  "signup": {
+    "title": "Join the Launch",
+    "subtitle": "Sign up now and receive exclusive benefits",
+    "badge": "Launch 2025",
+    "gift": "Special offer for the first members",
+    "name": "Name",
+    "email": "Email",
+    "phone": "Phone",
+    "experience": "Running Experience",
+    "experienceOptions": {
+      "beginner": "Beginner",
+      "intermediate": "Intermediate",
+      "advanced": "Advanced"
+    },
+    "selectPlaceholder": "Select...",
+    "goals": "Your goals",
+    "goalsPlaceholder": "I want to run a half marathon...",
+    "submit": "I Want to Join",
+    "submitting": "Submitting...",
+    "success": "Thank you! We'll be in touch soon.",
+    "error": "Something went wrong. Please try again."
+  },
+  "footer": {
+    "location": "Leca da Palmeira, Porto",
+    "followUs": "Follow Us",
+    "rights": "All rights reserved",
+    "tagline": "Run better. Run pain-free. Run forever.",
+    "terms": "Terms & Conditions",
+    "privacy": "Privacy"
+  },
+  "common": {
+    "learnMore": "Learn More",
+    "joinNow": "Join Now",
+    "contact": "Contact",
+    "backToHome": "Back to Home"
+  }
+}

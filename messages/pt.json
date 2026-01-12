@@ -1,0 +1,198 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "about": "Sobre",
+    "programs": "Programas",
+    "gallery": "Galeria",
+    "contact": "Contacto",
+    "events": "Eventos",
+    "blog": "Blog",
+    "trainers": "Equipa"
+  },
+  "hero": {
+    "title": "OPORTO",
+    "subtitle": "RUNNING LAB",
+    "tagline": "Corre melhor. Corre sem dor. Corre para sempre.",
+    "cta": "Junta-te a Nos",
+    "scroll": "Scroll para descobrir"
+  },
+  "about": {
+    "title": "O Laboratorio",
+    "description": "O OPORTO RUNNING LAB e um laboratorio de corrida criado para quem quer correr melhor, com mais eficiencia, menos dores e maior consistencia - independentemente do nivel de experiencia.",
+    "approach": "Aqui, a corrida e tratada com metodo. Avaliamos a tecnica, identificamos limitacoes e corrigimos padroes de movimento, combinando aulas de grupo, treino tecnico e prescricao de treino individual adaptada aos objetivos de cada pessoa.",
+    "location": "Com base em Leca da Palmeira",
+    "mission": "Tornar a corrida mais segura, eficaz e sustentavel para todos."
+  },
+  "program": {
+    "title": "O Programa",
+    "subtitle": "Tudo o que precisas para evoluir",
+    "items": {
+      "group": {
+        "title": "Aulas em Grupo",
+        "description": "Aulas de corrida em grupo, com acompanhamento tecnico constante"
+      },
+      "technique": {
+        "title": "Avaliacao Tecnica",
+        "description": "Avaliacao e correcao da tecnica de corrida"
+      },
+      "personalized": {
+        "title": "Treino Personalizado",
+        "description": "Prescricao de treino de corrida personalizada"
+      },
+      "special": {
+        "title": "Sessoes Especiais",
+        "description": "Sessoes para aprofundar tecnica, forca e controlo"
+      },
+      "support": {
+        "title": "Acompanhamento",
+        "description": "Acompanhamento proximo, num ambiente motivador e acessivel"
+      }
+    }
+  },
+  "packages": {
+    "title": "Pacotes",
+    "subtitle": "Escolhe o teu caminho",
+    "note": "* Todos os pacotes incluem acesso a comunidade exclusiva",
+    "starter": {
+      "name": "Starter",
+      "description": "Para quem esta a dar os primeiros passos",
+      "features": [
+        "2 aulas de grupo por semana",
+        "Avaliacao tecnica inicial",
+        "Plano de treino basico",
+        "Acesso a comunidade"
+      ]
+    },
+    "evolution": {
+      "name": "Evolution",
+      "description": "Para quem quer evoluir consistentemente",
+      "features": [
+        "3 aulas de grupo por semana",
+        "Avaliacao tecnica mensal",
+        "Plano de treino personalizado",
+        "Sessoes de forca",
+        "Acompanhamento proximo"
+      ],
+      "popular": "Mais Popular"
+    },
+    "performance": {
+      "name": "Performance",
+      "description": "Para quem quer preparar provas",
+      "features": [
+        "Aulas ilimitadas",
+        "Avaliacao tecnica continua",
+        "Plano de treino avancado",
+        "Sessoes de forca e mobilidade",
+        "Acompanhamento premium",
+        "Consultoria nutricional"
+      ]
+    },
+    "mentoria": {
+      "name": "Mentoria Online",
+      "description": "Para quem esta longe mas quer evoluir",
+      "features": [
+        "Sessoes de video semanais",
+        "Plano de treino personalizado",
+        "Analise de video da tecnica",
+        "Acompanhamento via app",
+        "Acesso a comunidade online"
+      ]
+    },
+    "cta": "Saber Mais"
+  },
+  "services": {
+    "title": "Servicos Complementares",
+    "subtitle": "Parcerias para otimizar a tua performance",
+    "physio": {
+      "title": "Fisioterapia & Osteopatia",
+      "description": "Prevencao e recuperacao de lesoes com profissionais especializados em corrida",
+      "partner": "Fisiogo"
+    },
+    "nutrition": {
+      "title": "Nutricao Desportiva",
+      "description": "Orientacao alimentar personalizada para maximizar a tua performance e recuperacao",
+      "partner": "Em breve"
+    },
+    "psychology": {
+      "title": "Psicologia Desportiva",
+      "description": "Preparacao mental para atingires os teus objetivos e superares barreiras",
+      "partner": "Em breve"
+    }
+  },
+  "partners": {
+    "title": "Parceiros",
+    "subtitle": "Juntos vamos mais longe"
+  },
+  "events": {
+    "title": "Eventos",
+    "subtitle": "Proximos eventos e historico",
+    "upcoming": "Proximos Eventos",
+    "past": "Eventos Passados",
+    "register": "Inscrever",
+    "noEvents": "Novos eventos em breve",
+    "date": "Data",
+    "location": "Local",
+    "price": "Preco",
+    "free": "Gratuito",
+    "spots": "Vagas",
+    "spotsLeft": "vagas disponiveis"
+  },
+  "blog": {
+    "title": "Blog",
+    "subtitle": "Artigos e dicas sobre corrida",
+    "readMore": "Ler Mais",
+    "noPosts": "Novos artigos em breve",
+    "by": "Por",
+    "minRead": "min de leitura",
+    "backToBlog": "Voltar ao Blog"
+  },
+  "trainers": {
+    "title": "Equipa",
+    "subtitle": "Conhece os nossos treinadores",
+    "qualifications": "Qualificacoes",
+    "experience": "Experiencia",
+    "watchVideo": "Ver Video",
+    "specialties": "Especialidades"
+  },
+  "gallery": {
+    "title": "Galeria",
+    "subtitle": "Momentos do Lab",
+    "note": "* Adicione suas fotos e videos na pasta public/images e public/videos"
+  },
+  "signup": {
+    "title": "Junta-te ao Lancamento",
+    "subtitle": "Inscreve-te agora e recebe beneficios exclusivos",
+    "badge": "Lancamento 2026",
+    "gift": "Oferta especial para os primeiros membros",
+    "name": "Nome",
+    "email": "Email",
+    "phone": "Telefone",
+    "experience": "Experiencia de Corrida",
+    "experienceOptions": {
+      "beginner": "Iniciante",
+      "intermediate": "Intermediario",
+      "advanced": "Avancado"
+    },
+    "selectPlaceholder": "Selecionar...",
+    "goals": "Os teus objetivos",
+    "goalsPlaceholder": "Quero correr uma meia maratona...",
+    "submit": "Quero Fazer Parte",
+    "submitting": "A enviar...",
+    "success": "Obrigado! Entraremos em contacto em breve.",
+    "error": "Algo correu mal. Tenta novamente."
+  },
+  "footer": {
+    "location": "Leca da Palmeira, Porto",
+    "followUs": "Segue-nos",
+    "rights": "Todos os direitos reservados",
+    "tagline": "Corre melhor. Corre sem dor. Corre para sempre.",
+    "terms": "Termos & Condicoes",
+    "privacy": "Privacidade"
+  },
+  "common": {
+    "learnMore": "Saber Mais",
+    "joinNow": "Junta-te Agora",
+    "contact": "Contactar",
+    "backToHome": "Voltar ao Inicio"
+  }
+}
