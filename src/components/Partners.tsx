@@ -22,7 +22,7 @@ export default function Partners() {
 
   return (
     <section id="partners" className="relative bg-black overflow-hidden" style={{ paddingTop: '6rem', paddingBottom: '6rem' }}>
-      <div ref={containerRef} className="max-w-6xl mx-auto" style={{ paddingLeft: '2rem', paddingRight: '2rem' }}>
+      <div ref={containerRef} style={{ maxWidth: '72rem', margin: '0 auto', paddingLeft: '2rem', paddingRight: '2rem' }}>
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
