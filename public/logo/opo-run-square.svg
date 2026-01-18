@@ -1,0 +1,9 @@
+<svg width="500" height="500" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+  <rect width="500" height="500" fill="#000000"/>
+  <!-- OPO -->
+  <text x="85" y="240" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="72" font-weight="900" fill="#ffffff" letter-spacing="-2">OPO</text>
+  <!-- Dot after OPO -->
+  <circle cx="270" cy="225" r="6" fill="#666666"/>
+  <!-- RUN -->
+  <text x="290" y="240" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="72" font-weight="300" fill="#ffffff" letter-spacing="4">RUN</text>
+</svg>

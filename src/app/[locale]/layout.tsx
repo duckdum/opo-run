@@ -3,6 +3,7 @@ import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { locales, type Locale } from '@/i18n/config';
+import SignUpModal from '@/components/SignUpModal';
 import '../globals.css';
 
 export const metadata: Metadata = {
@@ -42,6 +43,7 @@ export default async function LocaleLayout({
         <NextIntlClientProvider messages={messages}>
           <div className="noise-overlay" />
           {children}
+          <SignUpModal />
         </NextIntlClientProvider>
       </body>
     </html>

@@ -162,8 +162,12 @@
   "signup": {
     "title": "Junta-te ao Lancamento",
     "subtitle": "Inscreve-te agora e recebe beneficios exclusivos",
-    "badge": "Lancamento 2026",
+    "badge": "Lancamento Fevereiro 2025",
     "gift": "Oferta especial para os primeiros membros",
+    "tshirtOffer": "Os primeiros 20 recebem uma t-shirt GRATIS!",
+    "tshirtDescription": "Se um dos nossos primeiros 20 membros e recebe uma t-shirt exclusiva OPO.RUN mais um desconto especial de membro fundador.",
+    "foundingMember": "Beneficios de membro fundador incluidos",
+    "launchDate": "Lancamento em Fevereiro 2025 em Leca da Palmeira",
     "name": "Nome",
     "email": "Email",
     "phone": "Telefone",
@@ -178,7 +182,9 @@
     "goalsPlaceholder": "Quero correr uma meia maratona...",
     "submit": "Quero Fazer Parte",
     "submitting": "A enviar...",
-    "success": "Obrigado! Entraremos em contacto em breve.",
+    "success": "Obrigado! Estas dentro!",
+    "tshirtEligible": "Parabens! Vais receber uma t-shirt GRATIS!",
+    "emailConfirmation": "Verifica o teu email para detalhes de confirmacao.",
     "error": "Algo correu mal. Tenta novamente."
   },
   "footer": {
@@ -194,5 +200,10 @@
     "joinNow": "Junta-te Agora",
     "contact": "Contactar",
     "backToHome": "Voltar ao Inicio"
+  },
+  "modal": {
+    "title": "Junta-te ao Lancamento",
+    "subtitle": "Faz parte de algo especial desde o primeiro dia",
+    "close": "Entendido"
   }
 }

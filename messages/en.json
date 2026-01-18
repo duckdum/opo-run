@@ -138,8 +138,12 @@
   "signup": {
     "title": "Join the Launch",
     "subtitle": "Sign up now and receive exclusive benefits",
-    "badge": "Launch 2025",
+    "badge": "Launch February 2025",
     "gift": "Special offer for the first members",
+    "tshirtOffer": "First 20 get a FREE t-shirt!",
+    "tshirtDescription": "Be one of our first 20 members and receive an exclusive OPO.RUN t-shirt plus a special founding member discount.",
+    "foundingMember": "Founding member benefits included",
+    "launchDate": "Launching February 2025 in Leca da Palmeira",
     "name": "Name",
     "email": "Email",
     "phone": "Phone",
@@ -154,7 +158,9 @@
     "goalsPlaceholder": "I want to run a half marathon...",
     "submit": "I Want to Join",
     "submitting": "Submitting...",
-    "success": "Thank you! We'll be in touch soon.",
+    "success": "Thank you! You're in!",
+    "tshirtEligible": "Congratulations! You're getting a FREE t-shirt!",
+    "emailConfirmation": "Check your email for confirmation details.",
     "error": "Something went wrong. Please try again."
   },
   "footer": {
@@ -170,5 +176,10 @@
     "joinNow": "Join Now",
     "contact": "Contact",
     "backToHome": "Back to Home"
+  },
+  "modal": {
+    "title": "Join the Launch",
+    "subtitle": "Be part of something special from day one",
+    "close": "Got It"
   }
 }
