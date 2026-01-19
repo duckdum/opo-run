@@ -266,34 +266,57 @@ export default function Navigation() {
                 </motion.button>
               ))}
 
-              {/* Mobile Language Switcher */}
+              {/* Mobile Language Switcher - Minimal */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.55 }}
-                className="flex gap-4 mt-6"
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '0.5rem',
+                  marginTop: '2rem',
+                }}
               >
                 <button
                   onClick={() => {
                     switchLocale('pt');
                     setIsOpen(false);
                   }}
-                  className={clsx(
-                    'px-4 py-2 text-sm uppercase tracking-widest border rounded-full transition-colors',
-                    locale === 'pt' ? 'border-white bg-white text-black' : 'border-white/30 hover:border-white'
-                  )}
+                  style={{
+                    padding: '0',
+                    fontSize: '0.75rem',
+                    fontWeight: locale === 'pt' ? 600 : 400,
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.1em',
+                    border: 'none',
+                    background: 'transparent',
+                    cursor: 'pointer',
+                    transition: 'all 0.2s ease',
+                    color: locale === 'pt' ? 'white' : 'rgba(255,255,255,0.4)',
+                  }}
                 >
                   PT
                 </button>
+                <span style={{ color: 'rgba(255,255,255,0.2)', fontSize: '0.75rem' }}>/</span>
                 <button
                   onClick={() => {
                     switchLocale('en');
                     setIsOpen(false);
                   }}
-                  className={clsx(
-                    'px-4 py-2 text-sm uppercase tracking-widest border rounded-full transition-colors',
-                    locale === 'en' ? 'border-white bg-white text-black' : 'border-white/30 hover:border-white'
-                  )}
+                  style={{
+                    padding: '0',
+                    fontSize: '0.75rem',
+                    fontWeight: locale === 'en' ? 600 : 400,
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.1em',
+                    border: 'none',
+                    background: 'transparent',
+                    cursor: 'pointer',
+                    transition: 'all 0.2s ease',
+                    color: locale === 'en' ? 'white' : 'rgba(255,255,255,0.4)',
+                  }}
                 >
                   EN
                 </button>
