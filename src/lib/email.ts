@@ -184,7 +184,7 @@ export async function sendConfirmationEmail({
 
   try {
     const { error } = await resend.emails.send({
-      from: 'OPO.RUN <onboarding@resend.dev>',
+      from: process.env.EMAIL_FROM || 'OPO.RUN <hello@oporto.run>',
       to: recipient,
       subject: t.subject,
       html: generateEmailHtml({ name, locale, tshirtEligible }),
