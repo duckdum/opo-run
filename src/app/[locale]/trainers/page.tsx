@@ -83,7 +83,7 @@ export default function TrainersPage() {
     <>
       <Navigation />
       <main style={{ minHeight: '100vh', background: 'black', paddingTop: '8rem' }}>
-        <div className="max-w-6xl mx-auto" style={{ paddingLeft: '2rem', paddingRight: '2rem', paddingBottom: '6rem' }}>
+        <div style={{ maxWidth: '72rem', margin: '0 auto', paddingLeft: '2rem', paddingRight: '2rem', paddingBottom: '6rem' }}>
           {/* Page Header */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -99,7 +99,7 @@ export default function TrainersPage() {
           </motion.div>
 
           {/* Trainers Grid */}
-          <div className="trainers-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '2rem' }}>
+          <div className="trainers-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '2rem' }}>
             {trainers.map((trainer, index) => (
               <motion.div
                 key={trainer.id}

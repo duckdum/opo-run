@@ -28,7 +28,7 @@ export default function BlogPage() {
     <>
       <Navigation />
       <main style={{ minHeight: '100vh', background: 'black', paddingTop: '8rem' }}>
-        <div className="max-w-6xl mx-auto" style={{ paddingLeft: '2rem', paddingRight: '2rem', paddingBottom: '6rem' }}>
+        <div style={{ maxWidth: '72rem', margin: '0 auto', paddingLeft: '2rem', paddingRight: '2rem', paddingBottom: '6rem' }}>
           {/* Page Header */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -45,7 +45,7 @@ export default function BlogPage() {
 
           {/* Blog Posts Grid */}
           {posts.length > 0 ? (
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '2rem' }}>
+            <div className="blog-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '2rem' }}>
               {posts.map((post, index) => (
                 <Link key={post.id} href={`/blog/${post.slug}`}>
                   <motion.article
