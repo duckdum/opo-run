@@ -77,36 +77,41 @@ export default function Navigation() {
           'fixed top-0 left-0 right-0 z-50 transition-all duration-500',
           isScrolled ? 'bg-black/90 backdrop-blur-xl border-b border-white/5' : 'bg-transparent'
         )}
+        style={{ height: '60px' }}
       >
-        <div className="max-w-7xl mx-auto" style={{ paddingLeft: '1.5rem', paddingRight: '1.5rem', paddingTop: '1rem', paddingBottom: '1rem' }}>
-          <div className="flex items-center justify-between">
-            {/* Logo */}
-            <Link href="/" className="group flex items-center gap-2">
-              <motion.div
-                className="relative flex items-center"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <span className="text-xl md:text-2xl font-black tracking-tight">
-                  OPO
-                </span>
-                <span className="text-xl md:text-2xl font-black tracking-tight text-white/40">
-                  .
-                </span>
-                <span className="text-xl md:text-2xl font-light tracking-wider">
-                  RUN
-                </span>
-                <motion.div
-                  className="absolute -bottom-1 left-0 h-[2px] bg-white"
-                  initial={{ width: 0 }}
-                  whileHover={{ width: '100%' }}
-                  transition={{ duration: 0.3 }}
-                />
-              </motion.div>
-            </Link>
+        {/* Logo - fixed at left edge */}
+        <Link
+          href="/"
+          className="group flex items-center gap-2"
+          style={{ position: 'absolute', left: '1.5rem', top: '50%', transform: 'translateY(-50%)', zIndex: 10 }}
+        >
+          <motion.div
+            className="relative flex items-center"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <span className="text-xl md:text-2xl font-black tracking-tight">
+              OPO
+            </span>
+            <span className="text-xl md:text-2xl font-black tracking-tight text-white/40">
+              .
+            </span>
+            <span className="text-xl md:text-2xl font-light tracking-wider">
+              RUN
+            </span>
+            <motion.div
+              className="absolute -bottom-1 left-0 h-[2px] bg-white"
+              initial={{ width: 0 }}
+              whileHover={{ width: '100%' }}
+              transition={{ duration: 0.3 }}
+            />
+          </motion.div>
+        </Link>
 
-            {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center gap-6">
+        {/* Navigation - centered with page content, with padding for logo and language switcher */}
+        <div style={{ maxWidth: '72rem', margin: '0 auto', height: '100%', paddingLeft: '8rem', paddingRight: '8rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center gap-4 lg:gap-6">
               {/* Homepage scroll links */}
               {scrollItems.map((item) => (
                 <motion.button
@@ -151,64 +156,81 @@ export default function Navigation() {
                 </motion.button>
               ))}
 
-              {/* Language Switcher - Modern Toggle */}
-              <div style={{
-                display: 'flex',
-                alignItems: 'center',
-                background: 'rgba(255,255,255,0.05)',
-                borderRadius: '20px',
-                padding: '4px',
-                marginLeft: '0.5rem',
-              }}>
-                <button
-                  onClick={() => switchLocale('pt')}
-                  style={{
-                    padding: '6px 12px',
-                    fontSize: '0.7rem',
-                    fontWeight: 600,
-                    textTransform: 'uppercase',
-                    letterSpacing: '0.05em',
-                    borderRadius: '16px',
-                    border: 'none',
-                    cursor: 'pointer',
-                    transition: 'all 0.2s',
-                    background: locale === 'pt' ? 'white' : 'transparent',
-                    color: locale === 'pt' ? 'black' : 'rgba(255,255,255,0.5)',
-                  }}
-                >
-                  PT
-                </button>
-                <button
-                  onClick={() => switchLocale('en')}
-                  style={{
-                    padding: '6px 12px',
-                    fontSize: '0.7rem',
-                    fontWeight: 600,
-                    textTransform: 'uppercase',
-                    letterSpacing: '0.05em',
-                    borderRadius: '16px',
-                    border: 'none',
-                    cursor: 'pointer',
-                    transition: 'all 0.2s',
-                    background: locale === 'en' ? 'white' : 'transparent',
-                    color: locale === 'en' ? 'black' : 'rgba(255,255,255,0.5)',
-                  }}
-                >
-                  EN
-                </button>
-              </div>
-            </div>
-
-            {/* Mobile Menu Button */}
-            <motion.button
-              className="md:hidden relative z-50 p-2"
-              onClick={() => setIsOpen(!isOpen)}
-              whileTap={{ scale: 0.9 }}
-            >
-              {isOpen ? <X size={24} /> : <Menu size={24} />}
-            </motion.button>
           </div>
         </div>
+
+        {/* Language Switcher - fixed at right edge on desktop */}
+        <div
+          className="hidden md:flex"
+          style={{
+            position: 'absolute',
+            right: '1.5rem',
+            top: '50%',
+            transform: 'translateY(-50%)',
+            alignItems: 'center',
+            gap: '0.5rem',
+          }}
+        >
+          <button
+            onClick={() => switchLocale('pt')}
+            style={{
+              padding: '0.5rem 0.75rem',
+              fontSize: '0.875rem',
+              fontWeight: 500,
+              border: 'none',
+              background: locale === 'pt' ? 'rgba(255,255,255,0.1)' : 'transparent',
+              cursor: 'pointer',
+              transition: 'all 0.2s ease',
+              color: locale === 'pt' ? 'white' : 'rgba(255,255,255,0.4)',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.5rem',
+            }}
+          >
+            <span style={{ fontSize: '1rem' }}>🇵🇹</span>
+            PT
+          </button>
+          <button
+            onClick={() => switchLocale('en')}
+            style={{
+              padding: '0.5rem 0.75rem',
+              fontSize: '0.875rem',
+              fontWeight: 500,
+              border: 'none',
+              background: locale === 'en' ? 'rgba(255,255,255,0.1)' : 'transparent',
+              cursor: 'pointer',
+              transition: 'all 0.2s ease',
+              color: locale === 'en' ? 'white' : 'rgba(255,255,255,0.4)',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.5rem',
+            }}
+          >
+            <span style={{ fontSize: '1rem' }}>🇬🇧</span>
+            EN
+          </button>
+        </div>
+
+        {/* Mobile Menu Button - fixed at right edge, same distance as logo from left */}
+        <motion.button
+          className="md:hidden"
+          onClick={() => setIsOpen(!isOpen)}
+          whileTap={{ scale: 0.9 }}
+          style={{
+            position: 'fixed',
+            right: '1.5rem',
+            top: '18px',
+            zIndex: 9999,
+            background: 'none',
+            border: 'none',
+            padding: 0,
+            cursor: 'pointer',
+            outline: 'none',
+            WebkitTapHighlightColor: 'transparent'
+          }}
+        >
+          {isOpen ? <X size={24} /> : <Menu size={24} />}
+        </motion.button>
       </motion.nav>
 
       {/* Mobile Menu */}
@@ -266,7 +288,7 @@ export default function Navigation() {
                 </motion.button>
               ))}
 
-              {/* Mobile Language Switcher - Minimal */}
+              {/* Mobile Language Switcher with Flags */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -275,8 +297,8 @@ export default function Navigation() {
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  gap: '0.5rem',
-                  marginTop: '2rem',
+                  gap: '1rem',
+                  marginTop: '2.5rem',
                 }}
               >
                 <button
@@ -285,39 +307,42 @@ export default function Navigation() {
                     setIsOpen(false);
                   }}
                   style={{
-                    padding: '0',
-                    fontSize: '0.75rem',
-                    fontWeight: locale === 'pt' ? 600 : 400,
-                    textTransform: 'uppercase',
-                    letterSpacing: '0.1em',
+                    padding: '0.5rem 1rem',
+                    fontSize: '0.875rem',
+                    fontWeight: 500,
                     border: 'none',
-                    background: 'transparent',
+                    background: locale === 'pt' ? 'rgba(255,255,255,0.1)' : 'transparent',
                     cursor: 'pointer',
                     transition: 'all 0.2s ease',
                     color: locale === 'pt' ? 'white' : 'rgba(255,255,255,0.4)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '0.5rem',
                   }}
                 >
+                  <span style={{ fontSize: '1.25rem' }}>🇵🇹</span>
                   PT
                 </button>
-                <span style={{ color: 'rgba(255,255,255,0.2)', fontSize: '0.75rem' }}>/</span>
                 <button
                   onClick={() => {
                     switchLocale('en');
                     setIsOpen(false);
                   }}
                   style={{
-                    padding: '0',
-                    fontSize: '0.75rem',
-                    fontWeight: locale === 'en' ? 600 : 400,
-                    textTransform: 'uppercase',
-                    letterSpacing: '0.1em',
+                    padding: '0.5rem 1rem',
+                    fontSize: '0.875rem',
+                    fontWeight: 500,
                     border: 'none',
-                    background: 'transparent',
+                    background: locale === 'en' ? 'rgba(255,255,255,0.1)' : 'transparent',
                     cursor: 'pointer',
                     transition: 'all 0.2s ease',
                     color: locale === 'en' ? 'white' : 'rgba(255,255,255,0.4)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '0.5rem',
                   }}
                 >
+                  <span style={{ fontSize: '1.25rem' }}>🇬🇧</span>
                   EN
                 </button>
               </motion.div>
