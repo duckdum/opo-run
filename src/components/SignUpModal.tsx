@@ -11,7 +11,6 @@ interface FormData {
   email: string;
   phone: string;
   experience: string;
-  goals: string;
 }
 
 interface SubmitResponse {
@@ -54,7 +53,6 @@ export default function SignUpModal() {
     email: '',
     phone: '',
     experience: '',
-    goals: '',
   });
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [submitResult, setSubmitResult] = useState<SubmitResponse | null>(null);
@@ -98,7 +96,7 @@ export default function SignUpModal() {
 
       setStatus('success');
       setSubmitResult(result);
-      setFormData({ name: '', email: '', phone: '', experience: '', goals: '' });
+      setFormData({ name: '', email: '', phone: '', experience: '' });
     } catch {
       setStatus('error');
       setSubmitResult(null);

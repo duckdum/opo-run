@@ -10,7 +10,6 @@ interface FormData {
   name: string;
   email: string;
   experience: string;
-  goals: string;
 }
 
 interface SubmitResponse {
@@ -31,7 +30,6 @@ export default function SignUp() {
     name: '',
     email: '',
     experience: '',
-    goals: '',
   });
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [submitResult, setSubmitResult] = useState<SubmitResponse | null>(null);
@@ -60,7 +58,7 @@ export default function SignUp() {
 
       setStatus('success');
       setSubmitResult(result);
-      setFormData({ name: '', email: '', experience: '', goals: '' });
+      setFormData({ name: '', email: '', experience: '' });
     } catch {
       setStatus('error');
       setSubmitResult(null);
@@ -201,19 +199,6 @@ export default function SignUp() {
                   <option value="advanced" style={{ background: 'black' }}>{t('experienceOptions.advanced')}</option>
                 </select>
               </div>
-            </div>
-
-            {/* Goals */}
-            <div style={{ marginBottom: '2rem' }}>
-              <label style={labelStyle}>{t('goals')}</label>
-              <textarea
-                name="goals"
-                value={formData.goals}
-                onChange={handleChange}
-                rows={4}
-                style={{ ...inputStyle, resize: 'none' }}
-                placeholder={t('goalsPlaceholder')}
-              />
             </div>
 
             {/* Submit Button */}
