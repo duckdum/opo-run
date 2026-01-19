@@ -1,5 +1,4 @@
-import { promises as fs } from 'fs';
-import path from 'path';
+import { kv } from '@vercel/kv';
 
 export interface Submission {
   id: string;
@@ -13,23 +12,11 @@ export interface Submission {
   emailSent: boolean;
 }
 
-const DATA_DIR = path.join(process.cwd(), 'src', 'data');
-const SIGNUPS_FILE = path.join(DATA_DIR, 'signups.json');
-
-async function ensureDataFile(): Promise<void> {
-  try {
-    await fs.access(SIGNUPS_FILE);
-  } catch {
-    await fs.mkdir(DATA_DIR, { recursive: true });
-    await fs.writeFile(SIGNUPS_FILE, JSON.stringify({ submissions: [] }, null, 2));
-  }
-}
+const SIGNUPS_KEY = 'signups';
 
 export async function getSubmissions(): Promise<Submission[]> {
-  await ensureDataFile();
-  const data = await fs.readFile(SIGNUPS_FILE, 'utf-8');
-  const parsed = JSON.parse(data);
-  return parsed.submissions || [];
+  const submissions = await kv.get<Submission[]>(SIGNUPS_KEY);
+  return submissions || [];
 }
 
 export async function getSubmissionCount(): Promise<number> {
@@ -40,8 +27,6 @@ export async function getSubmissionCount(): Promise<number> {
 export async function saveSubmission(
   submission: Omit<Submission, 'id' | 'timestamp' | 'tshirtEligible' | 'emailSent'>
 ): Promise<{ submission: Submission; tshirtEligible: boolean }> {
-  await ensureDataFile();
-
   const submissions = await getSubmissions();
   const count = submissions.length;
   const tshirtEligible = count < 20;
@@ -55,7 +40,7 @@ export async function saveSubmission(
   };
 
   submissions.push(newSubmission);
-  await fs.writeFile(SIGNUPS_FILE, JSON.stringify({ submissions }, null, 2));
+  await kv.set(SIGNUPS_KEY, submissions);
 
   return { submission: newSubmission, tshirtEligible };
 }
@@ -66,7 +51,7 @@ export async function markEmailSent(id: string): Promise<void> {
 
   if (index !== -1) {
     submissions[index].emailSent = true;
-    await fs.writeFile(SIGNUPS_FILE, JSON.stringify({ submissions }, null, 2));
+    await kv.set(SIGNUPS_KEY, submissions);
   }
 }
 
