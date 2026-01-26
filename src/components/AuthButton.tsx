@@ -6,7 +6,11 @@ import { User } from '@supabase/supabase-js';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
-export default function AuthButton() {
+interface AuthButtonProps {
+  onNavigate?: () => void;
+}
+
+export default function AuthButton({ onNavigate }: AuthButtonProps = {}) {
   const router = useRouter();
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
@@ -44,17 +48,21 @@ export default function AuthButton() {
 
   if (user) {
     return (
-      <div className="flex items-center gap-6">
+      <div className="flex flex-col md:flex-row items-center gap-4 md:gap-6">
         <Link
           href="/dashboard"
-          className="text-xs uppercase tracking-[0.2em] text-white hover:text-white/70 transition-colors font-medium relative group"
+          onClick={onNavigate}
+          className="text-base md:text-xs uppercase tracking-[0.2em] text-white hover:text-white/70 transition-colors font-medium relative group"
         >
           Dashboard
           <span className="absolute -bottom-1 left-0 right-0 h-[1px] bg-white scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
         </Link>
         <button
-          onClick={handleSignOut}
-          className="text-xs uppercase tracking-[0.2em] text-white/50 hover:text-white transition-colors font-light"
+          onClick={() => {
+            handleSignOut();
+            onNavigate?.();
+          }}
+          className="text-base md:text-xs uppercase tracking-[0.2em] text-white/50 hover:text-white transition-colors font-light"
         >
           Sign Out
         </button>
@@ -63,16 +71,18 @@ export default function AuthButton() {
   }
 
   return (
-    <div className="flex items-center gap-6">
+    <div className="flex flex-col md:flex-row items-center gap-4 md:gap-6">
       <Link
         href="/login"
-        className="text-xs uppercase tracking-[0.2em] text-white/50 hover:text-white transition-colors font-light"
+        onClick={onNavigate}
+        className="text-base md:text-xs uppercase tracking-[0.2em] text-white/50 hover:text-white transition-colors font-light"
       >
         Login
       </Link>
       <Link
         href="/signup"
-        className="text-xs uppercase tracking-[0.2em] text-white hover:text-white/70 transition-colors font-medium relative group"
+        onClick={onNavigate}
+        className="text-base md:text-xs uppercase tracking-[0.2em] text-white hover:text-white/70 transition-colors font-medium relative group"
       >
         Sign Up
         <span className="absolute -bottom-1 left-0 right-0 h-[1px] bg-white scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />

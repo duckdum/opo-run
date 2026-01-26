@@ -384,6 +384,16 @@ export default function Navigation() {
                 </motion.button>
               ))}
 
+              {/* Mobile Auth Button */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.5 }}
+                style={{ marginTop: '2rem' }}
+              >
+                <AuthButton onNavigate={() => setIsOpen(false)} />
+              </motion.div>
+
               {/* Mobile Language Switcher with Flags */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -394,7 +404,7 @@ export default function Navigation() {
                   alignItems: 'center',
                   justifyContent: 'center',
                   gap: '1rem',
-                  marginTop: '2.5rem',
+                  marginTop: '2rem',
                 }}
               >
                 <button
