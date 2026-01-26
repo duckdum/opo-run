@@ -306,3 +306,70 @@ body {
     padding: 0.25rem !important;
   }
 }
+
+/* ============================================
+   Tawk.to Chat Widget - Premium Styling
+   ============================================ */
+
+/* Hide the ugly "We Are Here" text badge */
+#tawk-bubble-text {
+  display: none !important;
+}
+
+/* Style the chat bubble button */
+iframe[title*="chat widget"] {
+  border-radius: 50% !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4) !important;
+}
+
+/* Hide default badge/status text */
+.tawk-badge,
+.tawk-text-bubble,
+.tawk-name-label {
+  display: none !important;
+}
+
+/* Custom widget button styling */
+.tawk-button {
+  background: #ffffff !important;
+  border: 2px solid rgba(255, 255, 255, 0.2) !important;
+  transition: all 0.3s ease !important;
+}
+
+.tawk-button:hover {
+  transform: scale(1.05) !important;
+  box-shadow: 0 8px 30px rgba(255, 255, 255, 0.2) !important;
+}
+
+/* Chat window styling to match premium design */
+.tawk-chat-window {
+  background: #18181b !important; /* zinc-900 */
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 16px !important;
+}
+
+/* Message bubbles */
+.tawk-message-user {
+  background: #ffffff !important;
+  color: #000000 !important;
+  border-radius: 16px !important;
+}
+
+.tawk-message-agent {
+  background: #27272a !important; /* zinc-800 */
+  color: #ffffff !important;
+  border-radius: 16px !important;
+}
+
+/* Input field */
+.tawk-input-field {
+  background: rgba(255, 255, 255, 0.05) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  color: #ffffff !important;
+  border-radius: 12px !important;
+}
+
+.tawk-input-field:focus {
+  border-color: rgba(255, 255, 255, 0.3) !important;
+  outline: none !important;
+}

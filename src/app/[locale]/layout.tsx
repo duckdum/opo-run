@@ -4,6 +4,7 @@ import { getMessages } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { locales, type Locale } from '@/i18n/config';
 import SignUpModal from '@/components/SignUpModal';
+import TawkToWidget from '@/components/TawkToWidget';
 import '../globals.css';
 
 export const metadata: Metadata = {
@@ -44,6 +45,7 @@ export default async function LocaleLayout({
           <div className="noise-overlay" />
           {children}
           <SignUpModal />
+          <TawkToWidget />
         </NextIntlClientProvider>
       </body>
     </html>

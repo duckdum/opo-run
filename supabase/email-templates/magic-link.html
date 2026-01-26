@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="dark">
+  <title>Your Magic Link - OPO.RUN</title>
+</head>
+<body style="margin: 0; padding: 0; background-color: #000000; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;">
+  <div style="max-width: 600px; margin: 0 auto; background-color: #000000; color: #ffffff;">
+
+    <!-- Header -->
+    <div style="padding: 40px 30px; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.1);">
+      <div style="font-size: 32px; font-weight: 900; letter-spacing: -1px;">
+        <span style="color: #ffffff;">OPO</span><span style="color: #666666;">.</span><span style="font-weight: 300; letter-spacing: 2px;">RUN</span>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <div style="padding: 40px 30px;">
+
+      <h1 style="font-size: 24px; font-weight: 700; margin: 0 0 20px 0; color: #ffffff;">
+        Your Magic Link
+      </h1>
+
+      <p style="font-size: 16px; line-height: 1.6; margin: 0 0 25px 0; color: rgba(255,255,255,0.8);">
+        Click the button below to sign in to your OPO.RUN account. This link will expire in 1 hour.
+      </p>
+
+      <!-- CTA Button -->
+      <div style="margin: 30px 0;">
+        <a href="{{ .ConfirmationURL }}"
+           style="display: inline-block; padding: 16px 32px; background-color: #22c55e; color: #ffffff; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 16px;">
+          Sign In to OPO.RUN
+        </a>
+      </div>
+
+      <p style="font-size: 14px; line-height: 1.6; margin: 30px 0 0 0; color: rgba(255,255,255,0.6);">
+        Or copy and paste this URL into your browser:<br>
+        <a href="{{ .ConfirmationURL }}" style="color: #22c55e; word-break: break-all;">{{ .ConfirmationURL }}</a>
+      </p>
+
+      <div style="margin-top: 40px; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.1);">
+        <p style="font-size: 14px; color: rgba(255,255,255,0.6); margin: 0;">
+          If you didn't request this magic link, you can safely ignore this email.
+        </p>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div style="padding: 30px; text-align: center; border-top: 1px solid rgba(255,255,255,0.1);">
+      <p style="font-size: 12px; margin: 0 0 15px 0; color: rgba(255,255,255,0.5); font-style: italic;">
+        "Run better. Run pain-free. Run forever."
+      </p>
+
+      <p style="font-size: 12px; margin: 0 0 10px 0; color: rgba(255,255,255,0.5);">
+        Follow us:
+      </p>
+
+      <div style="margin: 0 0 20px 0;">
+        <a href="https://instagram.com/opo.run" style="color: #ffffff; text-decoration: none; margin: 0 10px; font-size: 14px;">Instagram</a>
+        <a href="https://strava.com/clubs/oporun" style="color: #ffffff; text-decoration: none; margin: 0 10px; font-size: 14px;">Strava</a>
+      </div>
+
+      <p style="font-size: 11px; margin: 0; color: rgba(255,255,255,0.3);">
+        OPO.RUN | Leça da Palmeira, Porto, Portugal
+      </p>
+    </div>
+  </div>
+</body>
+</html>

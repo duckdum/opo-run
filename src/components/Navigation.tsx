@@ -1,15 +1,22 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link, usePathname, useRouter } from '@/i18n/routing';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Globe } from 'lucide-react';
 import clsx from 'clsx';
 import { defaultLocale } from '@/i18n/config';
+import AuthButton from '@/components/AuthButton';
 
 // Homepage scroll sections
-const scrollItems = ['home', 'about', 'programs', 'gallery', 'contact'] as const;
+const scrollItems = [
+  'home',
+  'about',
+  'programs',
+  'gallery',
+  'contact',
+] as const;
 
 // Separate pages
 const pageItems = [
@@ -26,6 +33,8 @@ export default function Navigation() {
 
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [langDropdownOpen, setLangDropdownOpen] = useState(false);
+  const langDropdownRef = useRef<HTMLDivElement>(null);
 
   // Check if we're on the homepage (pathname from next-intl excludes locale prefix)
   const isHomePage = pathname === '/';
@@ -38,10 +47,25 @@ export default function Navigation() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        langDropdownRef.current &&
+        !langDropdownRef.current.contains(event.target as Node)
+      ) {
+        setLangDropdownOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
   const switchLocale = (newLocale: string) => {
     // next-intl's useRouter handles locale switching automatically
     // pathname from next-intl already excludes the locale prefix
     router.replace(pathname || '/', { locale: newLocale as 'pt' | 'en' });
+    setLangDropdownOpen(false);
   };
 
   const handleScrollSection = (section: string) => {
@@ -75,32 +99,40 @@ export default function Navigation() {
         animate={{ y: 0 }}
         className={clsx(
           'fixed top-0 left-0 right-0 z-50 transition-all duration-500',
-          isScrolled ? 'bg-black/90 backdrop-blur-xl border-b border-white/5' : 'bg-transparent'
+          isScrolled
+            ? 'bg-black/90 backdrop-blur-xl border-b border-white/5'
+            : 'bg-transparent',
         )}
         style={{ height: '60px' }}
       >
         {/* Logo - fixed at left edge */}
         <Link
-          href="/"
-          className="group flex items-center gap-2"
-          style={{ position: 'absolute', left: '1.5rem', top: '50%', transform: 'translateY(-50%)', zIndex: 10 }}
+          href='/'
+          className='group flex items-center gap-2'
+          style={{
+            position: 'absolute',
+            left: '1.5rem',
+            top: '50%',
+            transform: 'translateY(-50%)',
+            zIndex: 10,
+          }}
         >
           <motion.div
-            className="relative flex items-center"
+            className='relative flex items-center'
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            <span className="text-xl md:text-2xl font-black tracking-tight">
+            <span className='text-xl md:text-2xl font-black tracking-tight'>
               OPO
             </span>
-            <span className="text-xl md:text-2xl font-black tracking-tight text-white/40">
+            <span className='text-xl md:text-2xl font-black tracking-tight text-white/40'>
               .
             </span>
-            <span className="text-xl md:text-2xl font-light tracking-wider">
+            <span className='text-xl md:text-2xl font-light tracking-wider'>
               RUN
             </span>
             <motion.div
-              className="absolute -bottom-1 left-0 h-[2px] bg-white"
+              className='absolute -bottom-1 left-0 h-[2px] bg-white'
               initial={{ width: 0 }}
               whileHover={{ width: '100%' }}
               transition={{ duration: 0.3 }}
@@ -109,111 +141,168 @@ export default function Navigation() {
         </Link>
 
         {/* Navigation - centered with page content, with padding for logo and language switcher */}
-        <div style={{ maxWidth: '72rem', margin: '0 auto', height: '100%', paddingLeft: '8rem', paddingRight: '8rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <div
+          style={{
+            maxWidth: '72rem',
+            margin: '0 auto',
+            height: '100%',
+            paddingLeft: '8rem',
+            paddingRight: '8rem',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+        >
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-4 lg:gap-6">
-              {/* Homepage scroll links */}
-              {scrollItems.map((item) => (
-                <motion.button
-                  key={item}
-                  onClick={() => handleScrollSection(item)}
-                  className="relative text-xs uppercase tracking-widest text-white/70 hover:text-white transition-colors"
-                  whileHover={{ y: -2 }}
-                  whileTap={{ y: 0 }}
-                >
-                  {t(item)}
-                  <motion.span
-                    className="absolute -bottom-1 left-0 right-0 h-[1px] bg-white origin-left"
-                    initial={{ scaleX: 0 }}
-                    whileHover={{ scaleX: 1 }}
-                    transition={{ duration: 0.3 }}
-                  />
-                </motion.button>
-              ))}
+          <div className='hidden md:flex items-center gap-4 lg:gap-6'>
+            {/* Homepage scroll links */}
+            {scrollItems.map((item) => (
+              <motion.button
+                key={item}
+                onClick={() => handleScrollSection(item)}
+                className='relative text-xs uppercase tracking-widest text-white/70 hover:text-white transition-colors'
+                whileHover={{ y: -2 }}
+                whileTap={{ y: 0 }}
+              >
+                {t(item)}
+                <motion.span
+                  className='absolute -bottom-1 left-0 right-0 h-[1px] bg-white origin-left'
+                  initial={{ scaleX: 0 }}
+                  whileHover={{ scaleX: 1 }}
+                  transition={{ duration: 0.3 }}
+                />
+              </motion.button>
+            ))}
 
-              {/* Divider */}
-              <div style={{ width: '1px', height: '20px', background: 'rgba(255,255,255,0.2)' }} />
+            {/* Divider */}
+            <div
+              style={{
+                width: '1px',
+                height: '20px',
+                background: 'rgba(255,255,255,0.2)',
+              }}
+            />
 
-              {/* Page links */}
-              {pageItems.map((item) => (
-                <motion.button
-                  key={item.key}
-                  onClick={() => handlePageNavigation(item.href)}
-                  className={clsx(
-                    "relative text-xs uppercase tracking-widest transition-colors",
-                    pathname.includes(item.href) ? "text-white" : "text-white/70 hover:text-white"
-                  )}
-                  whileHover={{ y: -2 }}
-                  whileTap={{ y: 0 }}
-                >
-                  {t(item.key)}
-                  <motion.span
-                    className="absolute -bottom-1 left-0 right-0 h-[1px] bg-white origin-left"
-                    initial={{ scaleX: pathname.includes(item.href) ? 1 : 0 }}
-                    whileHover={{ scaleX: 1 }}
-                    transition={{ duration: 0.3 }}
-                  />
-                </motion.button>
-              ))}
-
+            {/* Page links */}
+            {pageItems.map((item) => (
+              <motion.button
+                key={item.key}
+                onClick={() => handlePageNavigation(item.href)}
+                className={clsx(
+                  'relative text-xs uppercase tracking-widest transition-colors',
+                  pathname.includes(item.href)
+                    ? 'text-white'
+                    : 'text-white/70 hover:text-white',
+                )}
+                whileHover={{ y: -2 }}
+                whileTap={{ y: 0 }}
+              >
+                {t(item.key)}
+                <motion.span
+                  className='absolute -bottom-1 left-0 right-0 h-[1px] bg-white origin-left'
+                  initial={{ scaleX: pathname.includes(item.href) ? 1 : 0 }}
+                  whileHover={{ scaleX: 1 }}
+                  transition={{ duration: 0.3 }}
+                />
+              </motion.button>
+            ))}
           </div>
         </div>
 
-        {/* Language Switcher - fixed at right edge on desktop */}
+        {/* Auth & Language Switcher - fixed at right edge on desktop */}
         <div
-          className="hidden md:flex"
+          className='hidden md:flex'
           style={{
             position: 'absolute',
             right: '1.5rem',
             top: '50%',
             transform: 'translateY(-50%)',
             alignItems: 'center',
-            gap: '0.5rem',
+            gap: '1rem',
           }}
         >
-          <button
-            onClick={() => switchLocale('pt')}
-            style={{
-              padding: '0.5rem 0.75rem',
-              fontSize: '0.875rem',
-              fontWeight: 500,
-              border: 'none',
-              background: locale === 'pt' ? 'rgba(255,255,255,0.1)' : 'transparent',
-              cursor: 'pointer',
-              transition: 'all 0.2s ease',
-              color: locale === 'pt' ? 'white' : 'rgba(255,255,255,0.4)',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '0.5rem',
-            }}
-          >
-            <span style={{ fontSize: '1rem' }}>🇵🇹</span>
-            PT
-          </button>
-          <button
-            onClick={() => switchLocale('en')}
-            style={{
-              padding: '0.5rem 0.75rem',
-              fontSize: '0.875rem',
-              fontWeight: 500,
-              border: 'none',
-              background: locale === 'en' ? 'rgba(255,255,255,0.1)' : 'transparent',
-              cursor: 'pointer',
-              transition: 'all 0.2s ease',
-              color: locale === 'en' ? 'white' : 'rgba(255,255,255,0.4)',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '0.5rem',
-            }}
-          >
-            <span style={{ fontSize: '1rem' }}>🇬🇧</span>
-            EN
-          </button>
+          {/* Language Dropdown - BEFORE auth buttons */}
+          <div ref={langDropdownRef} style={{ position: 'relative' }}>
+            <motion.button
+              onClick={() => setLangDropdownOpen(!langDropdownOpen)}
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              className='flex items-center justify-center w-9 h-9 rounded-full bg-transparent border border-white/10 hover:border-white/30 transition-all'
+            >
+              <Globe size={16} className='text-white/60' />
+            </motion.button>
+
+            <AnimatePresence>
+              {langDropdownOpen && (
+                <motion.div
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 8 }}
+                  transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
+                  className='absolute left-0 mt-2 bg-zinc-950/98 backdrop-blur-xl border border-white/10 rounded-xl shadow-2xl'
+                  style={{ zIndex: 100, width: '122px' }}
+                >
+                  <div className='p-1.5'>
+                    <button
+                      onClick={() => switchLocale('pt')}
+                      className={clsx(
+                        'w-full py-3 flex items-center rounded-lg transition-all text-left',
+                        locale === 'pt'
+                          ? 'bg-white/[0.08] text-white'
+                          : 'text-white/40 hover:bg-white/[0.04] hover:text-white/80',
+                      )}
+                      style={{ paddingLeft: '0.3rem', paddingRight: '0.4rem', gap: '0.625rem' }}
+                    >
+                      <span className='text-xl leading-none'>🇵🇹</span>
+                      <span className='text-base font-light flex-1'>
+                        Português
+                      </span>
+                      {locale === 'pt' && (
+                        <motion.div
+                          initial={{ scale: 0 }}
+                          animate={{ scale: 1 }}
+                          className='w-1.5 h-1.5 rounded-full bg-white'
+                        />
+                      )}
+                    </button>
+                    <div className='h-1' />
+                    <button
+                      onClick={() => switchLocale('en')}
+                      className={clsx(
+                        'w-full py-3 flex items-center rounded-lg transition-all text-left',
+                        locale === 'en'
+                          ? 'bg-white/[0.08] text-white'
+                          : 'text-white/40 hover:bg-white/[0.04] hover:text-white/80',
+                      )}
+                      style={{ paddingLeft: '0.3rem', paddingRight: '0.4rem', gap: '0.625rem' }}
+                    >
+                      <span className='text-xl leading-none'>🇬🇧</span>
+                      <span className='text-base font-light flex-1'>
+                        English
+                      </span>
+                      {locale === 'en' && (
+                        <motion.div
+                          initial={{ scale: 0 }}
+                          animate={{ scale: 1 }}
+                          className='w-1.5 h-1.5 rounded-full bg-white'
+                        />
+                      )}
+                    </button>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+
+          {/* Vertical divider */}
+          <div className='h-5 w-px bg-white/10' />
+
+          <AuthButton />
         </div>
 
         {/* Mobile Menu Button - fixed at right edge, same distance as logo from left */}
         <motion.button
-          className="md:hidden"
+          className='md:hidden'
           onClick={() => setIsOpen(!isOpen)}
           whileTap={{ scale: 0.9 }}
           style={{
@@ -226,7 +315,7 @@ export default function Navigation() {
             padding: 0,
             cursor: 'pointer',
             outline: 'none',
-            WebkitTapHighlightColor: 'transparent'
+            WebkitTapHighlightColor: 'transparent',
           }}
         >
           {isOpen ? <X size={24} /> : <Menu size={24} />}
@@ -240,14 +329,14 @@ export default function Navigation() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-40 bg-black/98 backdrop-blur-xl md:hidden"
+            className='fixed inset-0 z-40 bg-black/98 backdrop-blur-xl md:hidden'
           >
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 20 }}
               transition={{ delay: 0.1 }}
-              className="flex flex-col items-center justify-center h-full gap-6"
+              className='flex flex-col items-center justify-center h-full gap-6'
             >
               {/* Homepage scroll links */}
               {scrollItems.map((item, index) => (
@@ -257,7 +346,7 @@ export default function Navigation() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.1 + index * 0.05 }}
                   onClick={() => handleScrollSection(item)}
-                  className="text-2xl font-light uppercase tracking-widest text-white/80 hover:text-white transition-colors"
+                  className='text-2xl font-light uppercase tracking-widest text-white/80 hover:text-white transition-colors'
                 >
                   {t(item)}
                 </motion.button>
@@ -268,7 +357,12 @@ export default function Navigation() {
                 initial={{ opacity: 0, scaleX: 0 }}
                 animate={{ opacity: 1, scaleX: 1 }}
                 transition={{ delay: 0.35 }}
-                style={{ width: '100px', height: '1px', background: 'rgba(255,255,255,0.2)', margin: '1rem 0' }}
+                style={{
+                  width: '100px',
+                  height: '1px',
+                  background: 'rgba(255,255,255,0.2)',
+                  margin: '1rem 0',
+                }}
               />
 
               {/* Page links */}
@@ -280,8 +374,10 @@ export default function Navigation() {
                   transition={{ delay: 0.4 + index * 0.05 }}
                   onClick={() => handlePageNavigation(item.href)}
                   className={clsx(
-                    "text-2xl font-light uppercase tracking-widest transition-colors",
-                    pathname.includes(item.href) ? "text-white" : "text-white/80 hover:text-white"
+                    'text-2xl font-light uppercase tracking-widest transition-colors',
+                    pathname.includes(item.href)
+                      ? 'text-white'
+                      : 'text-white/80 hover:text-white',
                   )}
                 >
                   {t(item.key)}
@@ -311,7 +407,8 @@ export default function Navigation() {
                     fontSize: '0.875rem',
                     fontWeight: 500,
                     border: 'none',
-                    background: locale === 'pt' ? 'rgba(255,255,255,0.1)' : 'transparent',
+                    background:
+                      locale === 'pt' ? 'rgba(255,255,255,0.1)' : 'transparent',
                     cursor: 'pointer',
                     transition: 'all 0.2s ease',
                     color: locale === 'pt' ? 'white' : 'rgba(255,255,255,0.4)',
@@ -333,7 +430,8 @@ export default function Navigation() {
                     fontSize: '0.875rem',
                     fontWeight: 500,
                     border: 'none',
-                    background: locale === 'en' ? 'rgba(255,255,255,0.1)' : 'transparent',
+                    background:
+                      locale === 'en' ? 'rgba(255,255,255,0.1)' : 'transparent',
                     cursor: 'pointer',
                     transition: 'all 0.2s ease',
                     color: locale === 'en' ? 'white' : 'rgba(255,255,255,0.4)',
