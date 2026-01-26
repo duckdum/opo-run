@@ -201,3 +201,155 @@ export async function sendConfirmationEmail({
     return { success: false, error: 'Failed to send email' };
   }
 }
+
+// Welcome email for new authenticated users
+interface WelcomeEmailParams {
+  recipient: string;
+  name: string;
+  locale: 'en' | 'pt';
+  role: 'runner' | 'coach';
+}
+
+export async function sendWelcomeEmail({
+  recipient,
+  name,
+  locale,
+  role,
+}: WelcomeEmailParams): Promise<{ success: boolean; error?: string }> {
+  const isCoach = role === 'coach';
+
+  const subject = locale === 'pt'
+    ? `Bem-vindo ao OPO.RUN${isCoach ? ' - Conta de Treinador Criada' : ''}!`
+    : `Welcome to OPO.RUN${isCoach ? ' - Coach Account Created' : ''}!`;
+
+  const greeting = locale === 'pt' ? `Olá ${name}` : `Hi ${name}`;
+
+  const welcomeText = locale === 'pt'
+    ? isCoach
+      ? 'A tua conta de treinador foi criada com sucesso! Estamos muito felizes por te teres juntado à equipa OPO.RUN.'
+      : 'A tua conta foi criada com sucesso! Bem-vindo à família OPO.RUN. Estamos ansiosos por te ajudar a atingir os teus objetivos de corrida.'
+    : isCoach
+      ? 'Your coach account has been created successfully! We\'re thrilled to have you join the OPO.RUN team.'
+      : 'Your account has been created successfully! Welcome to the OPO.RUN family. We\'re excited to help you achieve your running goals.';
+
+  const nextSteps = locale === 'pt'
+    ? isCoach
+      ? 'Em breve serás contactado pelo administrador para começares a trabalhar com os teus corredores.'
+      : 'Completa o teu perfil e começa a explorar a plataforma. Entraremos em contacto em breve com mais informações.'
+    : isCoach
+      ? 'You\'ll be contacted by an administrator soon to start working with your runners.'
+      : 'Complete your profile and start exploring the platform. We\'ll be in touch soon with more information.';
+
+  const ctaText = locale === 'pt' ? 'Ir para o Dashboard' : 'Go to Dashboard';
+  const ctaUrl = `${process.env.NEXT_PUBLIC_SITE_URL || 'https://opo.run'}/dashboard`;
+
+  const html = `
+<!DOCTYPE html>
+<html>
+<body style="font-family: Arial, sans-serif; background-color: #000; color: #fff; padding: 40px;">
+  <div style="max-width: 600px; margin: 0 auto; background-color: #111; padding: 40px; border-radius: 8px;">
+    <h1 style="color: #fff; margin-bottom: 20px;">${subject}</h1>
+    <p style="font-size: 16px; line-height: 1.6; color: #ddd;">${greeting},</p>
+    <p style="font-size: 16px; line-height: 1.6; color: #ddd;">${welcomeText}</p>
+    <p style="font-size: 16px; line-height: 1.6; color: #ddd;">${nextSteps}</p>
+    <a href="${ctaUrl}" style="display: inline-block; margin-top: 30px; padding: 15px 30px; background-color: #3b82f6; color: #fff; text-decoration: none; border-radius: 6px; font-weight: 600;">${ctaText}</a>
+    <p style="margin-top: 40px; font-size: 14px; color: #888;">The OPO.RUN Team</p>
+  </div>
+</body>
+</html>
+  `;
+
+  if (!process.env.RESEND_API_KEY) {
+    console.warn('RESEND_API_KEY not configured. Skipping email send.');
+    return { success: false, error: 'Email service not configured' };
+  }
+
+  try {
+    const { error } = await resend.emails.send({
+      from: process.env.EMAIL_FROM || 'OPO.RUN <hello@oporto.run>',
+      to: recipient,
+      subject,
+      html,
+    });
+
+    if (error) {
+      console.error('Resend error:', error);
+      return { success: false, error: error.message };
+    }
+
+    return { success: true };
+  } catch (err) {
+    console.error('Email send error:', err);
+    return { success: false, error: 'Failed to send email' };
+  }
+}
+
+// Coach invitation email
+interface CoachInviteParams {
+  recipient: string;
+  inviterName: string;
+  locale: 'en' | 'pt';
+}
+
+export async function sendCoachInviteEmail({
+  recipient,
+  inviterName,
+  locale,
+}: CoachInviteParams): Promise<{ success: boolean; error?: string }> {
+  const subject = locale === 'pt'
+    ? 'Convite para ser Treinador no OPO.RUN'
+    : 'Invitation to Join OPO.RUN as a Coach';
+
+  const greeting = locale === 'pt' ? 'Olá' : 'Hello';
+
+  const inviteText = locale === 'pt'
+    ? `${inviterName} convidou-te para seres treinador na plataforma OPO.RUN.`
+    : `${inviterName} has invited you to become a coach on the OPO.RUN platform.`;
+
+  const descriptionText = locale === 'pt'
+    ? 'Como treinador, terás acesso a ferramentas para gerir os teus corredores, criar planos de treino personalizados e acompanhar o progresso deles.'
+    : 'As a coach, you\'ll have access to tools for managing your runners, creating personalized training plans, and tracking their progress.';
+
+  const ctaText = locale === 'pt' ? 'Aceitar Convite e Criar Conta' : 'Accept Invite & Create Account';
+  const ctaUrl = `${process.env.NEXT_PUBLIC_SITE_URL || 'https://opo.run'}/signup?role=coach&email=${encodeURIComponent(recipient)}`;
+
+  const html = `
+<!DOCTYPE html>
+<html>
+<body style="font-family: Arial, sans-serif; background-color: #000; color: #fff; padding: 40px;">
+  <div style="max-width: 600px; margin: 0 auto; background-color: #111; padding: 40px; border-radius: 8px;">
+    <h1 style="color: #fff; margin-bottom: 20px;">${subject}</h1>
+    <p style="font-size: 16px; line-height: 1.6; color: #ddd;">${greeting},</p>
+    <p style="font-size: 16px; line-height: 1.6; color: #ddd;">${inviteText}</p>
+    <p style="font-size: 16px; line-height: 1.6; color: #ddd;">${descriptionText}</p>
+    <a href="${ctaUrl}" style="display: inline-block; margin-top: 30px; padding: 15px 30px; background-color: #22c55e; color: #fff; text-decoration: none; border-radius: 6px; font-weight: 600;">${ctaText}</a>
+    <p style="margin-top: 40px; font-size: 14px; color: #888;">The OPO.RUN Team</p>
+  </div>
+</body>
+</html>
+  `;
+
+  if (!process.env.RESEND_API_KEY) {
+    console.warn('RESEND_API_KEY not configured. Skipping email send.');
+    return { success: false, error: 'Email service not configured' };
+  }
+
+  try {
+    const { error } = await resend.emails.send({
+      from: process.env.EMAIL_FROM || 'OPO.RUN <hello@oporto.run>',
+      to: recipient,
+      subject,
+      html,
+    });
+
+    if (error) {
+      console.error('Resend error:', error);
+      return { success: false, error: error.message };
+    }
+
+    return { success: true };
+  } catch (err) {
+    console.error('Email send error:', err);
+    return { success: false, error: 'Failed to send email' };
+  }
+}
