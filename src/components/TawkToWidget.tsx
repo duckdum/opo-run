@@ -21,7 +21,7 @@ export default function TawkToWidget() {
       if (window.Tawk_API) {
         window.Tawk_API.onLoad = function () {
           // Set language: 'pt' for Portuguese, 'en' for English
-          window.Tawk_API.setAttributes(
+          window.Tawk_API?.setAttributes(
             {
               language: locale === 'pt' ? 'pt' : 'en',
             },
@@ -33,18 +33,20 @@ export default function TawkToWidget() {
           );
 
           // Custom styling - hide ugly elements
-          window.Tawk_API.customStyle = {
-            visibility: {
-              desktop: {
-                xOffset: 20,
-                yOffset: 20,
+          if (window.Tawk_API) {
+            window.Tawk_API.customStyle = {
+              visibility: {
+                desktop: {
+                  xOffset: 20,
+                  yOffset: 20,
+                },
+                mobile: {
+                  xOffset: 10,
+                  yOffset: 10,
+                },
               },
-              mobile: {
-                xOffset: 10,
-                yOffset: 10,
-              },
-            },
-          };
+            };
+          }
         };
       }
     };
@@ -73,6 +75,18 @@ declare global {
       ) => void;
       hideWidget?: () => void;
       showWidget?: () => void;
+      customStyle?: {
+        visibility?: {
+          desktop?: {
+            xOffset?: number;
+            yOffset?: number;
+          };
+          mobile?: {
+            xOffset?: number;
+            yOffset?: number;
+          };
+        };
+      };
     };
     Tawk_LoadStart?: Date;
   }
